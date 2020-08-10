@@ -1,0 +1,37 @@
+    • Average / Best case : when the tree is balanced or nearly balanced.
+    • Worst Case : When the tree is skewed.
+Compression : 
+Consider an Input file of ‘X’ symbols (characters). Let’s say the total number of distinct characters in our file is ‘N’.
+
+(construction) and (encoding) : 
+The construction of the FGK tree and encoding of symbols happens hand to hand. Initally when a character is encountered, its occurrence is checked in the tree(we are doing it through a map so takes O(log N) time).
+
+ If the character is there in the tree then its positioned is searched which takes O(log N) time in avg case and O(N) in worst case. then after that its code is generated which also takes the same time(O(log N) time in avg case and O(N) in worst case). And Thn The tree is updated which requires searching for the order greater than or equal to the order of the current node taking total of O(log N) time in avg case and O(N) time in worst case for both the operation from bottom to down(Updation and searching for order) and thn swapping of nodes happen in O(1) time.
+
+
+else{
+the code for the NYT node is generated taking O(log N) time in avg case and O(N) in worst case and thn the ascii code of the symbol is printed taking O(1) time. thm the tree is updated by adding the new node taking O(log N) time in avg case and O(N) time in worst case.}
+
+So the total Time taken for the reading the file and Printing the encoded message is X*(O(logN)+O(LogN)+O(1))=O(X*logN) time in avg case and X*(O(logN)+O(N)+O(1)=O(X*N) time in Worst case case
+
+
+Decoding :
+
+Decoding is similar to encoding in a way, as at any moment the structure of the tree is same in both the encoder and decoder.
+Let the total length of bit stream be S.
+
+After reading the stream bit by bit we traverse the tree accordingly(go to left child if '0' is encountered or otherwise go to right) and when we reach a leaf node
+
+if the leaf node is NYT than this signifies that the symbol we have been searching is not in the tree hence read the next 8 bits as it is and print the symbol according to the ascii value and thn update the tree(add the node) which takes O(log N) time in avg case and O(N) in worst case.(This time comples=xity is written taking into consideration the serching for order and swapping of nodes:O(1))
+
+else{
+if the leaf node is symbol than print the symbol and update the tree with the updated frequency of the symbol. Updation along with finding order and swapping of nodes, if required takes O(log N) time in avg case and O(N) time in worst case.  
+}
+Hence the total time taken for decoding:
+in Avg case: S*O(LogN)=O(S*logN)
+in worst case: S*O(N)=O(S*N) 
+	Space Complexity : 
+	The space required for the FGK Tree = N
+	The extra space required (maps, other local variables, etc) is bounded by N.
+	Hence, total space complexity : O(N). 
+
